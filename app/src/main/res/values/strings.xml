@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">Tripplanner</string>
+    <string name="trip_planner">Trip Planner</string>
+    <string name="label">email</string>
+    <string name="password">password</string>
+    <string name="login">Login</string>
+    <string name="forget_password">forget password?</string>
+    <string name="login_btn">login</string>
+    <string name="signup">signup</string>
+    <string name="signupActivityText">Signup</string>
+    <string name="email">email</string>
+    <string name="signup_btn">Signup</string>
+    <string name="where_to">Where to</string>
+    <string name="how_many_days">How many days</string>
+    <string name="how_many_hours_in_a_day">How many hours in a day</string>
+    <string name="categories">Categories</string>
+    <string name="activities">Activities</string>
+</resources>
