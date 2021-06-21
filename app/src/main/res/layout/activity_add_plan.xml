@@ -14,14 +14,14 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_gravity="center"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_gravity="center">
 
             <androidx.cardview.widget.CardView
                 android:id="@+id/login_card_view"
                 android:layout_width="match_parent"
-                android:layout_margin="@dimen/_10sdp"
                 android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp"
                 app:cardCornerRadius="@dimen/_10sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -44,7 +44,6 @@
                         android:textStyle="bold" />
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/menu_whereTo"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -53,6 +52,7 @@
                         app:boxStrokeColor="@color/blue">
 
                         <AutoCompleteTextView
+                            android:id="@+id/menu_whereTo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="none" />
@@ -60,7 +60,6 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/menu_days"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -68,6 +67,8 @@
                         android:hint="@string/how_many_days">
 
                         <AutoCompleteTextView
+                            android:id="@+id/menu_days"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="none" />
@@ -75,7 +76,6 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/menu_hours"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
@@ -83,6 +83,8 @@
                         android:hint="@string/how_many_hours_in_a_day">
 
                         <AutoCompleteTextView
+                            android:id="@+id/menu_hours"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="none" />
@@ -90,14 +92,16 @@
                     </com.google.android.material.textfield.TextInputLayout>
 
                     <com.google.android.material.textfield.TextInputLayout
-                        android:id="@+id/menu_activities"
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_10sdp"
-                        android:hint="@string/activities">
+                        android:hint="@string/activities"
+                        android:visibility="gone">
 
                         <AutoCompleteTextView
+                            android:id="@+id/menu_activities"
+
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:inputType="none" />
@@ -162,6 +166,7 @@
                         android:layout_gravity="center"
                         android:backgroundTint="@color/blue"
                         android:text="show your trip plan"
+                        android:layout_marginBottom="@dimen/_10sdp"
                         android:textAllCaps="false"
                         app:cornerRadius="@dimen/_10sdp" />
 
