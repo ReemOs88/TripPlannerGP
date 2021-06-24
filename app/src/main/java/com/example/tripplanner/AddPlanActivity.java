@@ -1,6 +1,8 @@
 package com.example.tripplanner;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
@@ -41,6 +43,7 @@ public class AddPlanActivity extends AppCompatActivity {
         ArrayAdapter<String> activitiesAdapter =
                 new ArrayAdapter<String>(this, android.R.layout.simple_expandable_list_item_1, activities);
         binding.menuActivities.setAdapter(activitiesAdapter);
+
     }
 
     private void clicks() {
@@ -50,4 +53,7 @@ public class AddPlanActivity extends AppCompatActivity {
     }
 
 
+    public void getSuggestionPlan(View view) {
+        startActivity(new Intent(this, SuggestionsActivity.class));
+    }
 }

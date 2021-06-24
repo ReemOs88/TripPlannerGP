@@ -42,4 +42,5 @@ public class CategoryDetailsActivity extends AppCompatActivity {
     public void addReview(View view) {
         startActivity(new Intent(this, AddReviewActivity.class));
     }
+
 }

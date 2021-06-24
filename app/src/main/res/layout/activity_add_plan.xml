@@ -162,6 +162,7 @@
 
                     <com.google.android.material.button.MaterialButton
                         android:layout_width="@dimen/_150sdp"
+                        android:onClick="getSuggestionPlan"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center"
                         android:backgroundTint="@color/blue"

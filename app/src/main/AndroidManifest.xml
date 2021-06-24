@@ -15,7 +15,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tripplanner">
-        <activity android:name=".AddReviewActivity"></activity>
+        <activity android:name=".SuggestionsActivity"></activity>
+        <activity android:name=".AddReviewActivity" />
         <activity android:name=".ForgetPasswordActivity" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
