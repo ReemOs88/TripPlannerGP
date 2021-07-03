@@ -54,8 +54,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/et_signup_userName"
                             android:layout_width="match_parent"
-
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:inputType="text" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -71,7 +71,8 @@
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/et_signup_email"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:inputType="textWebEmailAddress" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -81,12 +82,14 @@
                         android:layout_height="wrap_content"
                         android:layout_margin="@dimen/_10sdp"
                         android:layout_marginTop="@dimen/_20sdp"
-                        android:hint="@string/password">
+                        android:hint="@string/password"
+                        app:passwordToggleEnabled="true">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/et_signup_password"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content" />
+                            android:layout_height="wrap_content"
+                            android:inputType="textPassword" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -94,13 +97,12 @@
                         android:id="@+id/btn_signup"
                         android:layout_width="@dimen/_100sdp"
                         android:layout_height="wrap_content"
-                        android:onClick="register"
                         android:layout_gravity="center"
                         android:layout_marginTop="@dimen/_20sdp"
                         android:backgroundTint="@color/blue"
+                        android:onClick="register"
                         android:text="@string/signup_btn"
                         app:cornerRadius="@dimen/_10sdp" />
-
 
 
                 </LinearLayout>

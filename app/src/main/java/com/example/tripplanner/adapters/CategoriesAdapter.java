@@ -10,11 +10,21 @@ import androidx.annotation.NonNull;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.example.tripplanner.CategoryDetailsActivity;
+import com.example.tripplanner.Place;
 import com.example.tripplanner.R;
 import com.example.tripplanner.databinding.ItemCategoryBinding;
 
+import java.util.List;
+
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Holder> {
+
+    private final List<Place> places;
+
+    public CategoriesAdapter(List<Place> places) {
+        this.places = places;
+    }
 
     @NonNull
     @Override
@@ -27,17 +37,21 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ho
 
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
-        holder.binding.setName("Mall " + (position + 1));
+        Place place = places.get(position);
+
+        holder.binding.setName(place.getName());
+
+        Glide.with(holder.itemView.getContext()).load(place.getImages().get(0)).into(holder.binding.placeImage);
 
         holder.itemView.setOnClickListener(v -> {
-//            Toast.makeText(v.getContext(), "Mall " + (position + 1), Toast.LENGTH_SHORT).show();
-            v.getContext().startActivity(new Intent(v.getContext(), CategoryDetailsActivity.class));
+            v.getContext().startActivity(new Intent(v.getContext(), CategoryDetailsActivity.class)
+                    .putExtra("place", place));
         });
     }
 
     @Override
     public int getItemCount() {
-        return 22;
+        return places.size();
     }
 
     class Holder extends RecyclerView.ViewHolder {

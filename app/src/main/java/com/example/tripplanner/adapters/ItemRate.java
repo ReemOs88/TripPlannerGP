@@ -1,7 +1,6 @@
 package com.example.tripplanner.adapters;
 
 public class ItemRate {
-
     private String username;
     private float rate;
     private String comment;

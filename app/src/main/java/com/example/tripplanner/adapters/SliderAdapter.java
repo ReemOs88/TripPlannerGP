@@ -13,15 +13,18 @@ import com.example.tripplanner.R;
 import com.smarteist.autoimageslider.SliderViewAdapter;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class SliderAdapter extends
         SliderViewAdapter<SliderAdapter.SliderAdapterVH> {
 
     private Context context;
+    private List<String> images;
 //    private List<String> mSliderItems = new ArrayList<>();
 
-    public SliderAdapter(Context context) {
+    public SliderAdapter(Context context, List<String> images) {
         this.context = context;
+        this.images = images;
     }
 
 //    public void renewItems(List<SliderItem> sliderItems) {
@@ -47,14 +50,13 @@ public class SliderAdapter extends
 
     @Override
     public void onBindViewHolder(SliderAdapterVH viewHolder, final int position) {
-
 //        SliderItem sliderItem = mSliderItems.get(position);
 
 //        viewHolder.textViewDescription.setText(sliderItem.getDescription());
 //        viewHolder.textViewDescription.setTextSize(16);
 //        viewHolder.textViewDescription.setTextColor(Color.WHITE);
         Glide.with(viewHolder.itemView)
-                .load(R.drawable.cairo)
+                .load(images.get(position))
                 .fitCenter()
                 .into(viewHolder.imageViewBackground);
 
@@ -71,7 +73,7 @@ public class SliderAdapter extends
     public int getCount() {
         //slider view count could be dynamic size
 //        return mSliderItems.size();
-        return 8;
+        return images.size();
     }
 
     class SliderAdapterVH extends SliderViewAdapter.ViewHolder {

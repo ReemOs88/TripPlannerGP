@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tripplanner">
-        <activity android:name=".SuggestionsActivity"></activity>
+        <activity android:name=".SuggestionsActivity"/>
         <activity android:name=".AddReviewActivity" />
         <activity android:name=".ForgetPasswordActivity" />
         <!--
@@ -44,7 +44,8 @@
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity android:name=".MainActivity" />
+        <activity android:name=".MainActivity"
+            android:theme="@style/Theme.ActionBar"/>
         <activity android:name=".AddPlanActivity" />
     </application>
 
