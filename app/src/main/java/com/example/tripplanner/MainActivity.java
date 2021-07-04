@@ -123,4 +123,8 @@ public class MainActivity extends AppCompatActivity {
     public void openHistorical(View view) {
         openAllPlaces("Historical");
     }
+
+    public void openFavourite(View view) {
+
+    }
 }

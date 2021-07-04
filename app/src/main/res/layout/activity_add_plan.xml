@@ -115,48 +115,53 @@
                         app:singleLine="false">
 
                         <com.google.android.material.chip.Chip
-                            android:id="@+id/chipCpp"
+                            android:id="@+id/chipMall"
                             style="@style/Widget.MaterialComponents.Chip.Filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Malls" />
 
                         <com.google.android.material.chip.Chip
-                            android:id="@+id/chipJava"
+                            android:id="@+id/chipMonuments"
                             style="@style/Widget.MaterialComponents.Chip.Filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Monuments" />
 
                         <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_entertainment"
                             style="@style/Widget.MaterialComponents.Chip.Filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Entertainment" />
 
                         <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_religion"
                             style="@style/Widget.MaterialComponents.Chip.Filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Religion sites" />
 
                         <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_historical"
                             style="@style/Widget.MaterialComponents.Chip.Filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="Historical" />
 
                         <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_park"
                             style="@style/Widget.MaterialComponents.Chip.Filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="parks" />
+                            android:text="Parks" />
 
                         <com.google.android.material.chip.Chip
+                            android:id="@+id/chip_restaurant"
                             style="@style/Widget.MaterialComponents.Chip.Filter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:text="resturants" />
+                            android:text="Restaurants" />
 
                     </com.google.android.material.chip.ChipGroup>
 

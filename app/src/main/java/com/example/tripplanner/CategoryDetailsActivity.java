@@ -33,7 +33,7 @@ public class CategoryDetailsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_category_details);
 
-        place = (Place) getIntent().getSerializableExtra("place");
+        place =  getIntent().getParcelableExtra("place");
         binding.setData(place);
 
         binding.imageSlider.setSliderAdapter(new SliderAdapter(this, place.getImages()));

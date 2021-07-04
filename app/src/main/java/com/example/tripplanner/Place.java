@@ -1,9 +1,12 @@
 package com.example.tripplanner;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import java.io.Serializable;
 import java.util.List;
 
-public class Place implements Serializable {
+public class Place implements   Parcelable {
     private String id;
     private String name;
     private String category;
@@ -29,6 +32,48 @@ public class Place implements Serializable {
         this.rate = rate;
         this.images = images;
     }
+
+    protected Place(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        category = in.readString();
+        city = in.readString();
+        about = in.readString();
+        location = in.readString();
+        duration = in.readInt();
+        rate = in.readDouble();
+        images = in.createStringArrayList();
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(name);
+        dest.writeString(category);
+        dest.writeString(city);
+        dest.writeString(about);
+        dest.writeString(location);
+        dest.writeInt(duration);
+        dest.writeDouble(rate);
+        dest.writeStringList(images);
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    public static final Creator<Place> CREATOR = new Creator<Place>() {
+        @Override
+        public Place createFromParcel(Parcel in) {
+            return new Place(in);
+        }
+
+        @Override
+        public Place[] newArray(int size) {
+            return new Place[size];
+        }
+    };
 
     public String getId() {
         return id;
