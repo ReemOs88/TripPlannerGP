@@ -24,7 +24,7 @@ import java.util.List;
 
 public class AddPlanActivity extends AppCompatActivity {
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-
+    public static ArrayList<Place> places = new ArrayList<>();
     ActivityAddPlanBinding binding;
     List<String> categories = new ArrayList<>();
 
@@ -180,28 +180,47 @@ public class AddPlanActivity extends AppCompatActivity {
     private void arrangePlacesAccordingRate(List<Place> allPlaces) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
             Collections.sort(allPlaces, Comparator.comparing(Place::getRate));
+            Collections.reverse(allPlaces);
             filterPlanAccordingTime(allPlaces);
         }
     }
 
     private void filterPlanAccordingTime(List<Place> arrangedPlaces) {
         ArrayList<Place> finalPlaces = new ArrayList<>();
+        int restaurantCounter = 0;
         int timeCounter = 0;
         for (Place place : arrangedPlaces) {
             timeCounter += place.getDuration();
 
             if (timeCounter > totalTime) break;
 
-            finalPlaces.add(place);
+            if (categories.size() == 1 && categories.contains("Restaurant")){
+                finalPlaces.add(place);
+                continue;
+            }
+
+            if (place.getCategory().equals("Restaurant")) {
+                if (restaurantCounter < day) {
+                    finalPlaces.add(place);
+                    restaurantCounter++;
+                }
+
+            } else {
+                finalPlaces.add(place);
+
+            }
         }
 
         navigateToShowPlan(finalPlaces);
     }
 
     private void navigateToShowPlan(ArrayList<Place> finalPlaces) {
+        places = finalPlaces;
         Intent intent = new Intent(this, SuggestionsActivity.class);
-        intent.putParcelableArrayListExtra("finalPlaces", finalPlaces);
-        intent.putExtra("canSave",true);
+//        Bundle bundle = new Bundle();
+//        bundle.putParcelableArrayList("finalPlaces", finalPlaces);
+//        intent.putExtra("bundle", bundle);
+        intent.putExtra("canSave", true);
         startActivity(intent);
         finish();
     }

@@ -9,8 +9,15 @@ import android.widget.Toast;
 
 import com.example.tripplanner.adapters.ItemRate;
 import com.example.tripplanner.databinding.ActivityAddReviewBinding;
+import com.example.tripplanner.nlp.ApiClient;
+import com.example.tripplanner.nlp.NlpRequest;
+import com.example.tripplanner.nlp.NlpResponse;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.firestore.FirebaseFirestore;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class AddReviewActivity extends AppCompatActivity {
     ActivityAddReviewBinding binding;
@@ -57,9 +64,28 @@ public class AddReviewActivity extends AppCompatActivity {
             return;
         }
 
-        ItemRate rateRequest = new ItemRate(username, stars, comment);
+        analysisComment(comment, stars);
 
-        rateProvider(rateRequest);
+
+    }
+
+    private void analysisComment(String comment, float stars) {
+        NlpRequest nlpRequest = new NlpRequest(comment);
+
+        ApiClient.getRetrofit().analysisReview(nlpRequest)
+                .enqueue(new Callback<NlpResponse>() {
+                    @Override
+                    public void onResponse(Call<NlpResponse> call, Response<NlpResponse> response) {
+                        ItemRate rateRequest = new ItemRate(username, stars, comment, response.body().isPositive());
+
+                        rateProvider(rateRequest);
+                    }
+
+                    @Override
+                    public void onFailure(Call<NlpResponse> call, Throwable t) {
+                        Toast.makeText(AddReviewActivity.this, "Can't analysis comment", Toast.LENGTH_SHORT).show();
+                    }
+                });
     }
 
     private void rateProvider(ItemRate rateRequest) {

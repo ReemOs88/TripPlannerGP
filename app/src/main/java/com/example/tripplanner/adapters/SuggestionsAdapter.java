@@ -22,12 +22,14 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Locale;
 
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
 public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.Holder> {
     private final ArrayList<Place> places;
 
     public SuggestionsAdapter(ArrayList<Place> places) {
         this.places = places;
-        Collections.reverse(places);
     }
 
     @NonNull
@@ -101,5 +103,10 @@ public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.
             super(binding.getRoot());
             this.binding = binding;
         }
+    }
+
+    private void analysisReview(){
+
+
     }
 }

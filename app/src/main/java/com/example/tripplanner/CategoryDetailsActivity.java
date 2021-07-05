@@ -51,6 +51,7 @@ public class CategoryDetailsActivity extends AppCompatActivity {
                 .collection("reviews").addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                itemRates.clear();
                 for (DocumentSnapshot snapshot : value.getDocuments()) {
                     ItemRate itemRate = snapshot.toObject(ItemRate.class);
                     itemRates.add(itemRate);

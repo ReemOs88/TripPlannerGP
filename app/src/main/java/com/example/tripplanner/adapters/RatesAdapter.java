@@ -9,8 +9,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.tripplanner.R;
 import com.example.tripplanner.databinding.ItemReviewBinding;
+import com.example.tripplanner.nlp.ApiClient;
+import com.example.tripplanner.nlp.NlpRequest;
+import com.example.tripplanner.nlp.NlpResponse;
 
 import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class RatesAdapter extends RecyclerView.Adapter<RatesAdapter.RatesHolder> {
     private final List<ItemRate> rates;
@@ -28,7 +35,16 @@ public class RatesAdapter extends RecyclerView.Adapter<RatesAdapter.RatesHolder>
 
     @Override
     public void onBindViewHolder(@NonNull RatesHolder holder, int position) {
-        holder.binding.setData(rates.get(position));
+        ItemRate itemRate = rates.get(position);
+
+        holder.binding.setData(itemRate);
+
+        if (itemRate.isPositive()){
+            holder.binding.nlpImage.setImageResource(R.drawable.ic_like);
+        }
+        else {
+            holder.binding.nlpImage.setImageResource(R.drawable.ic_dis_like);
+        }
     }
 
     @Override

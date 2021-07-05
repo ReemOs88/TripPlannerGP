@@ -32,7 +32,9 @@ public class SuggestionsActivity extends AppCompatActivity {
 
         planId = String.valueOf(System.currentTimeMillis());
 
-        places = getIntent().getParcelableArrayListExtra("finalPlaces");
+//        Bundle bundle = getIntent().getBundleExtra("bundle");
+//        places = bundle.getParcelableArrayList("finalPlaces");
+        places = AddPlanActivity.places;
 
         binding.suggestionsRv.setAdapter(new SuggestionsAdapter(places));
 
@@ -46,6 +48,8 @@ public class SuggestionsActivity extends AppCompatActivity {
     public void savePlan(View view) {
         Map<String, Object> map = new HashMap<>();
         map.put("places", places);
+        map.put("id", planId);
+
         firestore.collection("users").document(auth.getCurrentUser().getUid())
                 .collection("myPlans").document(planId).set(map)
                 .addOnSuccessListener(aVoid -> {

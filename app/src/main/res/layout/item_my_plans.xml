@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="planName"
             type="String" />
@@ -16,15 +17,37 @@
         android:elevation="@dimen/_2sdp"
         app:cardCornerRadius="@dimen/_10sdp">
 
-        <TextView
-            tools:text="Plan 1"
-            android:text="@{planName}"
-            android:gravity="center"
-            android:padding="@dimen/_5sdp"
-            android:textSize="@dimen/_22ssp"
-            android:textStyle="bold"
-            android:textColor="@color/black"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="0dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/delete"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/_5sdp"
+                android:text="@{planName}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_22ssp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="Plan 1" />
+
+            <ImageView
+                android:id="@+id/delete"
+                android:padding="@dimen/_5sdp"
+                android:layout_width="@dimen/_33sdp"
+                android:layout_height="@dimen/_33sdp"
+                android:layout_margin="@dimen/_5sdp"
+                android:src="@drawable/ic_delete"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
     </com.google.android.material.card.MaterialCardView>
 </layout>
