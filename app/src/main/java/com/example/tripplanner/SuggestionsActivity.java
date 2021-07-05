@@ -1,10 +1,14 @@
 package com.example.tripplanner;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.View;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.tripplanner.adapters.SuggestionsAdapter;
@@ -45,18 +49,45 @@ public class SuggestionsActivity extends AppCompatActivity {
     }
 
     public void savePlan(View view) {
-        Map<String, Object> map = new HashMap<>();
-        map.put("places", places);
-        map.put("id", planId);
+        AlertDialog.Builder alert = new AlertDialog.Builder(this);
 
-        firestore.collection("users").document(auth.getCurrentUser().getUid())
-                .collection("myPlans").document(planId).set(map)
-                .addOnSuccessListener(aVoid -> {
-                    Toast.makeText(this, "Plan saved", Toast.LENGTH_SHORT).show();
-                })
-                .addOnFailureListener(e -> {
-                    Toast.makeText(this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
-                });
+        final EditText edittext = new EditText(this);
+//        alert.setMessage("Enter Your Message");
+        alert.setTitle("Enter Your Plan Name");
+
+        alert.setView(edittext);
+
+        alert.setPositiveButton("Confirm", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                //What ever you want to do with the value
+                //OR
+                String name = edittext.getText().toString();
+
+                Map<String, Object> map = new HashMap<>();
+                map.put("places", places);
+                map.put("id", planId);
+                map.put("name", name);
+
+                firestore.collection("users").document(auth.getCurrentUser().getUid())
+                        .collection("myPlans").document(planId).set(map)
+                        .addOnSuccessListener(aVoid -> {
+                            Toast.makeText(SuggestionsActivity.this, "Plan saved", Toast.LENGTH_SHORT).show();
+                        })
+                        .addOnFailureListener(e -> {
+                            Toast.makeText(SuggestionsActivity.this, e.getLocalizedMessage(), Toast.LENGTH_SHORT).show();
+                        });
+            }
+        });
+
+        alert.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int whichButton) {
+                // what ever you want to do with No option.
+            }
+        });
+
+        alert.show();
+
+
     }
 
 

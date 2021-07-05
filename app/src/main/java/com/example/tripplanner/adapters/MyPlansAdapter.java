@@ -36,7 +36,7 @@ public class MyPlansAdapter extends RecyclerView.Adapter<MyPlansAdapter.MyPlansH
 
     @Override
     public void onBindViewHolder(@NonNull MyPlansHolder holder, int position) {
-        holder.binding.setPlanName("Plan " + (position + 1));
+        holder.binding.setPlanName(myPlans.get(position).getName());
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), SuggestionsActivity.class);
