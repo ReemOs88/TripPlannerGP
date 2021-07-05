@@ -54,11 +54,17 @@ public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.
 
             double distance = getDistance(place, places.get(position + 1));
 
-            double duration = (distance * 1000 / 80 / 60); // 80 Km/h
+            double duration;
+            if (distance > 1) {
+                duration = (distance / 60 * 60 + 10); // 80 Km/h
 
-            holder.binding.tvDistance.setText(new DecimalFormat("###.###").format(distance) + " Km");
+            } else {
+                duration = (distance / 60 * 60 + 5); // 80 Km/h
+            }
 
-            holder.binding.tvDuration.setText(new DecimalFormat("###.###").format(duration) + " H");
+            holder.binding.tvDistance.setText(new DecimalFormat("###.#").format(distance) + " Km");
+
+            holder.binding.tvDuration.setText(new DecimalFormat("###").format(duration) + " m");
         }
 
         holder.binding.setName(place.getName());

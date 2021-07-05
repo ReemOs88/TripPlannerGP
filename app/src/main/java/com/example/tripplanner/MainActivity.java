@@ -125,6 +125,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void openFavourite(View view) {
-
+        startActivity(new Intent(this, MyPlansActivity.class));
     }
+
+
+
 }

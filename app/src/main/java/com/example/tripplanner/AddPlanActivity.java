@@ -201,6 +201,7 @@ public class AddPlanActivity extends AppCompatActivity {
     private void navigateToShowPlan(ArrayList<Place> finalPlaces) {
         Intent intent = new Intent(this, SuggestionsActivity.class);
         intent.putParcelableArrayListExtra("finalPlaces", finalPlaces);
+        intent.putExtra("canSave",true);
         startActivity(intent);
         finish();
     }

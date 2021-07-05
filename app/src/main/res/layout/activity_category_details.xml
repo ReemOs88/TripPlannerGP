@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="data"
             type="com.example.tripplanner.Place" />
@@ -48,14 +49,16 @@
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_10sdp"
                     android:layout_weight="1"
-                    tools:text="Malls"
+                    android:fontFamily="serif"
                     android:text="@{data.name}"
                     android:textColor="@color/black"
-                    android:textSize="@dimen/_20ssp"
+                    android:textSize="@dimen/_18ssp"
+                    android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toStartOf="@+id/imageView"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Malls" />
 
                 <ImageView
                     android:id="@+id/imageView"
@@ -78,19 +81,41 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_10sdp"
-                tools:text="Expect duration : 2 hours"
-                android:text="@{`Expect duration : ` + data.duration +  ` hours`}"
+                android:fontFamily="serif"
+                android:text="Expect duration"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_20ssp" />
+                android:textSize="@dimen/_16ssp"
+                tools:text="Expect duration" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="@{data.duration +  ` hours`}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14ssp"
+                tools:text="2 hours" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="@dimen/_10sdp"
-                tools:text="About : amazing mall"
-                android:text="@{`About : ` + data.about}"
+                android:fontFamily="serif"
+                android:text="About"
                 android:textColor="@color/black"
-                android:textSize="@dimen/_20ssp" />
+                android:textSize="@dimen/_16ssp"
+                tools:text="About" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:text="@{data.about}"
+                android:textColor="@color/black"
+                android:textSize="@dimen/_14ssp"
+                tools:text="amazing mall" />
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -105,20 +130,20 @@
                     android:layout_margin="@dimen/_10sdp"
                     android:layout_weight="1"
                     android:drawablePadding="@dimen/_5sdp"
-                    tools:text="3.5"
                     android:text="@{data.rate + ``}"
                     android:textColor="@color/black"
                     android:textSize="@dimen/_20ssp"
-                    app:drawableStartCompat="@drawable/ic_star_rate" />
+                    app:drawableStartCompat="@drawable/ic_star_rate"
+                    tools:text="3.5" />
 
                 <com.google.android.material.button.MaterialButton
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_margin="@dimen/_10sdp"
                     android:layout_weight="1"
-                    android:onClick="addReview"
                     android:backgroundTint="@color/blue"
                     android:drawablePadding="@dimen/_5sdp"
+                    android:onClick="addReview"
                     android:text="@string/add_review"
                     android:textColor="@color/white"
                     app:drawableStartCompat="@drawable/ic_star_rate" />
