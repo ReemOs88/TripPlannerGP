@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class SuggestionsActivity extends AppCompatActivity {
     ActivitySuggestionsBinding binding;
-    ArrayList<Place> places = new ArrayList<>();
+    public static ArrayList<Place> places = new ArrayList<>();
 
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     FirebaseAuth auth = FirebaseAuth.getInstance();
@@ -34,7 +34,6 @@ public class SuggestionsActivity extends AppCompatActivity {
 
 //        Bundle bundle = getIntent().getBundleExtra("bundle");
 //        places = bundle.getParcelableArrayList("finalPlaces");
-        places = AddPlanActivity.places;
 
         binding.suggestionsRv.setAdapter(new SuggestionsAdapter(places));
 

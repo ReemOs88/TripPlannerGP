@@ -24,7 +24,6 @@ import java.util.List;
 
 public class AddPlanActivity extends AppCompatActivity {
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
-    public static ArrayList<Place> places = new ArrayList<>();
     ActivityAddPlanBinding binding;
     List<String> categories = new ArrayList<>();
 
@@ -215,7 +214,7 @@ public class AddPlanActivity extends AppCompatActivity {
     }
 
     private void navigateToShowPlan(ArrayList<Place> finalPlaces) {
-        places = finalPlaces;
+        SuggestionsActivity.places = finalPlaces;
         Intent intent = new Intent(this, SuggestionsActivity.class);
 //        Bundle bundle = new Bundle();
 //        bundle.putParcelableArrayList("finalPlaces", finalPlaces);

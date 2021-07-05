@@ -40,7 +40,7 @@ public class MyPlansAdapter extends RecyclerView.Adapter<MyPlansAdapter.MyPlansH
 
         holder.itemView.setOnClickListener(v -> {
             Intent intent = new Intent(v.getContext(), SuggestionsActivity.class);
-            intent.putExtra("finalPlaces", myPlans.get(position).getPlaces());
+            SuggestionsActivity.places = myPlans.get(position).getPlaces();
             v.getContext().startActivity(intent);
         });
 
