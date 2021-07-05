@@ -7,18 +7,20 @@
          location permissions for the "MyLocation" functionality.
     -->
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:allowBackup="true"
+        android:hardwareAccelerated="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
-        android:hardwareAccelerated="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Tripplanner">
-        <activity android:name=".MyPlansActivity"></activity>
+        <activity android:name=".AboutUsActivity"></activity>
+        <activity android:name=".ProfileActivity" />
+        <activity android:name=".MyPlansActivity" />
         <activity android:name=".SuggestionsActivity" />
         <activity android:name=".AddReviewActivity" />
         <activity android:name=".ForgetPasswordActivity" />
@@ -48,9 +50,7 @@
         </activity>
         <activity android:name=".LoginActivity" />
         <activity android:name=".RegisterActivity" />
-        <activity
-            android:name=".MainActivity"
-            android:theme="@style/Theme.ActionBar" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".AddPlanActivity" />
     </application>
 

@@ -7,8 +7,10 @@ import androidx.databinding.BindingAdapter;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Gravity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -27,14 +29,35 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
+import mehdi.sakout.aboutpage.AboutPage;
+
 public class MainActivity extends AppCompatActivity {
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
     ActivityMainBinding binding;
+
+//    @Override
+//    protected void onPostCreate(Bundle savedInstanceState) {
+//        super.onPostCreate(savedInstanceState);
+//        // Sync the toggle state after onRestoreInstanceState has occurred.
+//        mDrawerToggle.syncState();
+//    }
+//
+//    @Override
+//    public void onConfigurationChanged(Configuration newConfig) {
+//        super.onConfigurationChanged(newConfig);
+//        mDrawerToggle.onConfigurationChanged(newConfig);
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+        setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setHomeButtonEnabled(true);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setHomeAsUpIndicator(R.drawable.ic_baseline_menu_24);
+
 
 //        binding.mallsRv.setAdapter(new CategoriesAdapter());
 //        binding.malls2Rv.setAdapter(new CategoriesAdapter());
@@ -53,6 +76,21 @@ public class MainActivity extends AppCompatActivity {
         getPlaces("Entertainment", binding.entertainmentRv);
 
         getPlaces("Historical", binding.historicalRv);
+
+        binding.navView.setNavigationItemSelectedListener(item -> {
+            binding.drawer.closeDrawers();
+
+            if (item.getItemId() == R.id.item_profile) {
+                startActivity(new Intent(this, ProfileActivity.class));
+            } else if (item.getItemId() == R.id.item_about_us) {
+                startActivity(new Intent(this, AboutUsActivity.class));
+
+            } else if (item.getItemId() == R.id.item_logout) {
+                logout();
+            }
+
+            return true;
+        });
     }
 
     private void getPlaces(String category, RecyclerView recyclerView) {
@@ -79,19 +117,24 @@ public class MainActivity extends AppCompatActivity {
                 .putExtra("category", category));
     }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main_menu, menu);
-        return super.onCreateOptionsMenu(menu);
-    }
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        getMenuInflater().inflate(R.menu.main_menu, menu);
+//        return super.onCreateOptionsMenu(menu);
+//    }
 
+    @SuppressLint("WrongConstant")
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        binding.drawer.openDrawer(Gravity.START);
+        return super.onOptionsItemSelected(item);
+    }
+
+    private void logout() {
         FirebaseAuth.getInstance().signOut();
         finish();
         Intent intent = new Intent(MainActivity.this, LoginActivity.class);
         startActivity(intent);
-        return super.onOptionsItemSelected(item);
     }
 
     public void openReligiousSites(View view) {
@@ -127,7 +170,6 @@ public class MainActivity extends AppCompatActivity {
     public void openFavourite(View view) {
         startActivity(new Intent(this, MyPlansActivity.class));
     }
-
 
 
 }
