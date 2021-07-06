@@ -2,6 +2,7 @@ package com.example.tripplanner.adapters;
 
 import android.content.Intent;
 import android.location.Location;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -41,6 +42,8 @@ public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.
         );
     }
 
+    private static final String TAG = "SuggestionsAdapter";
+
     @Override
     public void onBindViewHolder(@NonNull Holder holder, int position) {
         Place place = places.get(position);
@@ -55,6 +58,19 @@ public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.
             holder.binding.durationLayout.setVisibility(View.VISIBLE);
 
             double distance = getDistance(place, places.get(position + 1));
+
+            Log.i(TAG, "onBindViewHolder: " + places.get(position).getLocation() + " ! " + places.get(position + 1).getLocation());
+            Log.i(TAG, "onBindViewHolder: old " + distance);
+
+            String[] latLng1 = places.get(position).getLocation().split(",");
+            String[] latLng2 = places.get(position + 1).getLocation().split(",");
+
+            Log.i(TAG, "onBindViewHolder: new " + distance(
+                    Double.parseDouble(latLng1[0]),
+                    Double.parseDouble(latLng1[1]),
+                    Double.parseDouble(latLng2[0]),
+                    Double.parseDouble(latLng2[1])
+            ));
 
             double duration;
             if (distance > 1) {
@@ -75,6 +91,27 @@ public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.
             v.getContext().startActivity(new Intent(v.getContext(), CategoryDetailsActivity.class)
                     .putExtra("place", place));
         });
+    }
+
+    private double distance(double lat1, double lon1, double lat2, double lon2) {
+        double theta = lon1 - lon2;
+        double dist = Math.sin(deg2rad(lat1))
+                * Math.sin(deg2rad(lat2))
+                + Math.cos(deg2rad(lat1))
+                * Math.cos(deg2rad(lat2))
+                * Math.cos(deg2rad(theta));
+        dist = Math.acos(dist);
+        dist = rad2deg(dist);
+        dist = dist * 60 * 1.1515;
+        return (dist);
+    }
+
+    private double deg2rad(double deg) {
+        return (deg * Math.PI / 180.0);
+    }
+
+    private double rad2deg(double rad) {
+        return (rad * 180.0 / Math.PI);
     }
 
     private double getDistance(Place place1, Place place2) {
@@ -105,7 +142,7 @@ public class SuggestionsAdapter extends RecyclerView.Adapter<SuggestionsAdapter.
         }
     }
 
-    private void analysisReview(){
+    private void analysisReview() {
 
 
     }
