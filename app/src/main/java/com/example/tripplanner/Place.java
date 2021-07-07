@@ -13,7 +13,7 @@ public class Place implements   Parcelable {
     private String city;
     private String about;
     private String location;
-    private int duration;
+    private double duration;
     private double rate;
     private List<String> images;
 
@@ -40,7 +40,7 @@ public class Place implements   Parcelable {
         city = in.readString();
         about = in.readString();
         location = in.readString();
-        duration = in.readInt();
+        duration = in.readDouble();
         rate = in.readDouble();
         images = in.createStringArrayList();
     }
@@ -53,7 +53,7 @@ public class Place implements   Parcelable {
         dest.writeString(city);
         dest.writeString(about);
         dest.writeString(location);
-        dest.writeInt(duration);
+        dest.writeDouble(duration);
         dest.writeDouble(rate);
         dest.writeStringList(images);
     }
@@ -115,11 +115,11 @@ public class Place implements   Parcelable {
         this.about = about;
     }
 
-    public int getDuration() {
+    public double getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(double duration) {
         this.duration = duration;
     }
 
